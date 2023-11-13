@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 07:11:02 by rbourgea          #+#    #+#             */
-/*   Updated: 2023/11/13 08:33:42 by rbourgea         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:07:45 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
+# include <sys/types.h>
+# include <sys/socket.h>
+# include <netdb.h>
 
 // libft.c
 int	ft_strncmp(const char *s1, const char *s2, size_t n);

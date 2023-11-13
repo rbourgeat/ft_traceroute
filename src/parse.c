@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 07:10:56 by rbourgea          #+#    #+#             */
-/*   Updated: 2023/11/13 09:00:31 by rbourgea         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:06:52 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,23 @@
 
 void print_help() {
 	printf("Usage:\n  traceroute\nOptions:\n  --help                      Read this help and exit\n\nArguments:\n+     host          The host to traceroute to\n      packetlen     The full packet length (default is the length of an IP\n                    header plus 40). Can be ignored or increased to a minimal\n                    allowed value\n");
+}
+
+void resolve_destination(char *str) {
+	int error = 0;
+	struct addrinfo hints = {0};
+	struct addrinfo *addrinfo_list = 0;
+
+	hints.ai_family = AF_INET;
+    hints.ai_socktype = SOCK_RAW;
+    hints.ai_protocol = IPPROTO_ICMP;
+    hints.ai_flags = AI_CANONNAME;
+	
+	if ((error = getaddrinfo(str, 0, &hints, &addrinfo_list))) {
+		printf("%s: Name or service not known\n", str);
+		printf("Cannot handle \"host\" cmdline arg `%s' on position 1 (argc 1)\n", str);
+		exit(2);
+    }
 }
 
 void parse_arg(int ac, char **av) {
@@ -44,9 +61,7 @@ void parse_arg(int ac, char **av) {
 			exit(2);
 		}
 		else {
-			printf("%c: Name or service not known\n", arg[0]);
-			printf("Cannot handle \"host\" cmdline arg `%c' on position 1 (argc 1)\n", arg[0]);
-			exit(2);
+			resolve_destination(arg);
 		}
 		i++;
 	}
