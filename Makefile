@@ -6,7 +6,7 @@
 #    By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/24 16:00:27 by rbourgea          #+#    #+#              #
-#    Updated: 2023/11/13 08:34:19 by rbourgea         ###   ########.fr        #
+#    Updated: 2023/11/15 06:31:52 by rbourgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,9 @@ INC_FILES	=	ft_traceroute.h
 
 SRC_FILES	=	main.c \
 				parse.c \
-				libft.c
+				libft.c \
+				packets.c \
+				probes.c
 
 INC_DIR		=	inc
 SRC_DIR		=	src
